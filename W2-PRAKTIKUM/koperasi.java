@@ -32,15 +32,9 @@ public class koperasi{
         System.out.print("Jumlah barang yang ingin dibeli: ");
         int jumlah = input.nextInt();
 
-        produkDipilih = new Produk(produkDipilih.Getnama_prod(),produkDipilih.Getharga_prod(),produkDipilih.Getstok_prod(), jumlah);
+        Transaksi trx = new Transaksi(produkDipilih,jumlah);
 
-        int total = produkDipilih.Getharga_prod() * produkDipilih.Getjumlah_prod();
+        trx.cetak_struk();
 
-        System.out.println("-- STRUK KOPERASI --");
-        System.out.println("Nama barang yang dibeli: " + produkDipilih.Getnama_prod());
-        System.out.println("Harga Barang: " + produkDipilih.Getharga_prod());
-        System.out.println("Jumlah Barang: " + produkDipilih.Getjumlah_prod());
-        System.out.println("Total Harga Barang: " + total);
-        System.out.println("--------------------");
     }
 }
