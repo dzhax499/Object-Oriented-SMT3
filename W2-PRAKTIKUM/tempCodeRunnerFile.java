@@ -22,25 +22,11 @@ public class koperasi{
         int pilih = input.nextInt();
 
         //error handling
-        if (pilih < 1 || pilih > daftarProduk.length){
+        if (pilih > 1 || pilih > daftarProduk.length){
             System.out.println("Pilihan tidak valid..");
             return;
         }
 
-        Produk produkDipilih = daftarProduk[pilih - 1];
 
-        System.out.print("Jumlah barang yang ingin dibeli: ");
-        int jumlah = input.nextInt();
-
-        produkDipilih = new Produk(produkDipilih.Getnama_prod(),produkDipilih.Getharga_prod(),produkDipilih.Getstok_prod(), jumlah);
-
-        int total = produkDipilih.Getharga_prod() * produkDipilih.Getjumlah_prod();
-
-        System.out.println("-- STRUK KOPERASI --");
-        System.out.println("Nama barang yang dibeli: " + produkDipilih.Getnama_prod());
-        System.out.println("Harga Barang: " + produkDipilih.Getharga_prod());
-        System.out.println("Jumlah Barang: " + produkDipilih.Getjumlah_prod());
-        System.out.println("Total Harga Barang: " + total);
-        System.out.println("--------------------");
     }
 }

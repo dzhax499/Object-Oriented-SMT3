@@ -24,18 +24,18 @@ public class PujasPolban {
         return harga;
     }
 
-    public void SetNama(String newnama)
-    {
-        this.nama = newnama;
-    }
-    public void Setjumlah(int newjumlah)
-    {
-        this.jumlah = newjumlah;
-    }
-    public void SetHarga(int newharga)
-    {
-        this.harga = newharga;
-    }
+    // public void SetNama(String newnama)
+    // {
+    //     this.nama = newnama;
+    // }
+    // public void Setjumlah(int newjumlah)
+    // {
+    //     this.jumlah = newjumlah;
+    // }
+    // public void SetHarga(int newharga)
+    // {
+    //     this.harga = newharga;
+    // }
 
     public static void main(String []args) throws java.io.IOException {
         System.out.println("-- MENU MAKANAN PUJAS --");
