@@ -1,1 +1,1 @@
-Main-Class: EmployeeApp
+Main-Class: App
