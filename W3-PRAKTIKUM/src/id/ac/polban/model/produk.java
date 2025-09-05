@@ -70,9 +70,14 @@ public class Produk {
    // untuk mengurangi stok (method))
     public boolean kurangiStok(int jumlah){
       if (stok_prod >= jumlah){
-         stok_prod = jumlah;
+         stok_prod -= jumlah;
          return true;
       }
       return false;
+    }
+
+    @Override
+    public String toString(){
+      return "ID: " + id_prod + " | " + nama_prod + " - Rp." + harga_prod + " (Stok: " + stok_prod + ")";
     }
 }
