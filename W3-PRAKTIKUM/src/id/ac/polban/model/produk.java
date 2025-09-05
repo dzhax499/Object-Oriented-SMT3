@@ -12,14 +12,12 @@ public class Produk {
     private static int nextId = 1;
     private int id_prod;
 
-    public Produk(String nama_prod, int harga_prod, int stok_prod, int jumlah_prod, int totalProduk, int nextId, int id_prod) {
+    public Produk(String nama_prod, int harga_prod, int stok_prod, int jumlah_prod) {
         this.nama_prod = nama_prod;
         this.harga_prod = harga_prod;
         this.stok_prod = stok_prod;
         this.jumlah_prod = jumlah_prod;
-        this.totalProduk = totalProduk;
-        this.nextId = nextId;
-        this.id_prod = id_prod;
+        totalProduk++;
     }
 //GETTER
    public String Getnama_prod() {
