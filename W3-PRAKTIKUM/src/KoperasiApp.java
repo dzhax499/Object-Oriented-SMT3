@@ -21,10 +21,15 @@ public class KoperasiApp {
             switch (menu) {
                 case 1 :
                     ProsesBelanja(input, koperasi);
+                    break;
                 case 2 :
                     koperasi.tampilkanRiwayatTransaksi();
+                    break;
                 case 3 :
                     System.out.println("sampai jumpa... :)");
+                    return;
+                default:
+                    System.out.println("Pilihan tidak valid");
                     break;
             }
         }
@@ -44,6 +49,10 @@ public class KoperasiApp {
 
             // Ambil Barang yang dipilih
             Produk produkdipilih = koperasi.getProd(pilihan);  //depedency
+            if (produkdipilih == null) {
+            System.out.println("Produk tidak ditemukan, silakan pilih kembali.");
+            return;
+            }
 
             // jumlah?
             System.out.print("Jumlah Barang : ");
@@ -57,6 +66,7 @@ public class KoperasiApp {
             // cek stok
             if (produkdipilih.Getstok_prod() < jumlah) {
                 System.out.println("Jumlah stok tidak mencukup....  :) cuma ada stok : " + produkdipilih.Getstok_prod());
+                 return;
             }
 
             // buat transaksi

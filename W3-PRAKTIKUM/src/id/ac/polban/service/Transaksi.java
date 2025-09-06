@@ -40,7 +40,7 @@ public class Transaksi {
     }
 
     public boolean ProsesTransaksi(){
-        return produk.ambil_prod(jumlahBeli); //depedency
+        return produk.kurangi_prod(jumlahBeli); //depedency
     }
 
     public void cetakStruk() {

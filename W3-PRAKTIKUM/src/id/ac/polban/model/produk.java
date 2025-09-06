@@ -9,7 +9,7 @@ public class Produk {
     //static 
     private static int totalProduk = 0;
 
-    public Produk(String nama_prod, int harga_prod, int stok_prod, int jumlah_prod) {
+    public Produk(String nama_prod, int harga_prod, int stok_prod) {
         this.nama_prod = nama_prod;
         this.harga_prod = harga_prod;
         this.stok_prod = stok_prod;
@@ -43,7 +43,7 @@ public class Produk {
 // METHOD
 
    // untuk mengurangi stok (method))
-    public boolean ambil_prod(int jumlah){
+    public boolean kurangi_prod(int jumlah){
       if (stok_prod >= jumlah){
          stok_prod = stok_prod - jumlah;
          return true;

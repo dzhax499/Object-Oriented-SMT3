@@ -9,7 +9,7 @@ public class KoperasiManager {
     private List<Transaksi> riwayatTransaksi;
 
     //  STATIC VARIABLES (Singleton Pattern)
-    private static KoperasiManager instance = null;
+    private static KoperasiManager instance;
 
     // static methode
     public static KoperasiManager getInstance() {
@@ -26,10 +26,10 @@ public class KoperasiManager {
     }
 
      private void isi_prod() {
-        daftarProd.add(new Produk("Pulpen", 3500, 10, 0));
-        daftarProd.add(new Produk("Buku", 7000, 15, 0));
-        daftarProd.add(new Produk("Pensil", 3000, 7, 0));
-        daftarProd.add(new Produk("Penghapus", 2000, 20, 0));
+        daftarProd.add(new Produk("Pulpen", 3500, 10));
+        daftarProd.add(new Produk("Buku", 7000, 15));
+        daftarProd.add(new Produk("Pensil", 3000, 7));
+        daftarProd.add(new Produk("Penghapus", 2000, 20));
     }
 
     public List<Produk> getDaftarProd(){
@@ -47,8 +47,8 @@ public class KoperasiManager {
     }
 
     public Produk getProd(int index) {
-        if (index >= 0 && index < daftarProd.size()) {
-            return daftarProd.get(index);
+        if (index >= 1 && index <= daftarProd.size()) {
+            return daftarProd.get(index -1 );
         }
         return null;
     }
