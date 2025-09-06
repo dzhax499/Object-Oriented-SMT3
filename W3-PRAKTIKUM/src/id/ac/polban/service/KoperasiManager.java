@@ -4,28 +4,28 @@ import id.ac.polban.model.Produk;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KoperasiService {
+public class KoperasiManager {
     private List<Produk> daftarProd;
     private List<Transaksi> riwayatTransaksi;
 
-    // static variable
-    private static KoperasiService instance;
+    //  STATIC VARIABLES (Singleton Pattern)
+    private static KoperasiManager instance = null;
 
     // static methode
-    public static KoperasiService getInstance() {
+    public static KoperasiManager getInstance() {
         if (instance == null ) {
-            instance = new KoperasiService();
+            instance = new KoperasiManager();
         }
         return instance;
     }
 
-    private KoperasiService(){
+    private KoperasiManager(){
         daftarProd = new ArrayList<>();
         riwayatTransaksi = new ArrayList<>();
-        initializeProduk();
+        isi_prod();
     }
 
-     private void initializeProduk() {
+     private void isi_prod() {
         daftarProd.add(new Produk("Pulpen", 3500, 10, 0));
         daftarProd.add(new Produk("Buku", 7000, 15, 0));
         daftarProd.add(new Produk("Pensil", 3000, 7, 0));
@@ -46,7 +46,7 @@ public class KoperasiService {
         System.out.println("==========================================");
     }
 
-    public Produk getProdukByIndex(int index) {
+    public Produk getProd(int index) {
         if (index >= 0 && index < daftarProd.size()) {
             return daftarProd.get(index);
         }
@@ -71,7 +71,7 @@ public class KoperasiService {
             System.out.println("Belum ada transaksi.");
         } else {
             for (Transaksi trx : riwayatTransaksi) {
-                System.out.println("No: " + trx.GetnoTransaksi() + " | " + 
+                System.out.println("No: " + trx.getProd() + " | " + 
                                  trx.getProd().Getnama_prod() + " | " +
                                  "Qty: " + trx.GetjumlahBeli() + " | " +
                                  "Total: Rp." + trx.hitungTotal());
