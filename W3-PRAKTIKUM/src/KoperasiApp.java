@@ -72,7 +72,7 @@ public class KoperasiApp {
             // buat transaksi
 
             Transaksi transaksi = new Transaksi(produkdipilih , jumlah);
-             
+        
             // proses pembelian
 
             if (transaksi.ProsesTransaksi()){
