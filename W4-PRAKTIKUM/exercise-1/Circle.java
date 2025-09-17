@@ -25,12 +25,14 @@ public class Circle { // Save as "Circle.java"
         color = "red";
     }
     // constructor with given radius and color
-    public Circle(double r, String c) { // 3rd constructor
-        this.radius = r;
-        this.color = c;
+    public Circle(double radius, String color) { // 3rd constructor
+        this.radius = radius;
+        this.color = color;
     }
-
-
+    // retunr color
+    public String getColor() {
+        return color;
+    }
     /**
      * Returns the radius
      */
@@ -43,6 +45,13 @@ public class Circle { // Save as "Circle.java"
      */
     public double getArea() {
         return radius * radius * Math.PI;
+    }
+    //setter
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 
     /**
