@@ -4,45 +4,81 @@ import id.ac.polban.model.Produk;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
-
+/**
+ * Kelas Transaksi merepresentasikan satu kali transaksi pembelian produk.
+ */
 public class Transaksi {
+
     private Produk produk;
     private int jumlahBeli;
     private LocalDateTime waktuTransaksi;
 
     // static variable
     private static int nomorTransaksi = 1; // auto-increment nomor
-    
-    public Transaksi(Produk produk,int jumlahBeli){
+
+    /**
+     * Konstruktor untuk membuat objek Transaksi baru.
+     *
+     * @param produk Objek produk yang dibeli.
+     * @param jumlahBeli Jumlah unit yang dibeli.
+     */
+    public Transaksi(Produk produk, int jumlahBeli) {
         this.produk = produk;
         this.jumlahBeli = jumlahBeli;
         this.waktuTransaksi = LocalDateTime.now();
     }
 
-    public Produk getProd(){
+    /**
+     * Mengembalikan objek produk yang dibeli dalam transaksi ini.
+     *
+     * @return Objek Produk.
+     */
+    public Produk getProd() {
         return produk;
     }
 
-    public int GetjumlahBeli(){
+    /**
+     * Mengembalikan jumlah barang yang dibeli.
+     *
+     * @return Jumlah unit produk.
+     */
+    public int GetjumlahBeli() {
         return jumlahBeli;
     }
 
+    /**
+     * Menghitung total harga transaksi.
+     *
+     * @return Total harga.
+     */
     public int hitungTotal() {
         return produk.Getharga_prod() * jumlahBeli;
     }
 
     //static Method
-    public static String buatNomorTransaksi(){
+    /**
+     * Membuat nomor transaksi yang unik secara auto-increment.
+     *
+     * @return String nomor transaksi.
+     */
+    public static String buatNomorTransaksi() {
         String nomor = "TRX -" + String.format("%03d", nomorTransaksi);
         nomorTransaksi++;
         return nomor;
     }
 
-    public boolean ProsesTransaksi(){
-        return produk.kurangi_prod(jumlahBeli); //depedency
+    /**
+     * Memproses transaksi dengan mengurangi stok produk.
+     *
+     * @return True jika proses berhasil, false sebaliknya.
+     */
+    public boolean ProsesTransaksi() {
+        return produk.kurangi_prod(jumlahBeli);
     }
 
+    /**
+     * Mencetak struk transaksi ke konsol.
+     */
     public void cetakStruk() {
         System.out.println("========== STRUK KOPERASI ==========");
         System.out.println("No. Transaksi : " + buatNomorTransaksi());

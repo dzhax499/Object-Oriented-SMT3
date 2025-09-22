@@ -1,13 +1,19 @@
+
 import id.ac.polban.model.Produk;
 import id.ac.polban.service.KoperasiManager;
 import id.ac.polban.service.Transaksi;
 import java.util.Scanner;
 
-
+/**
+ * KoperasiApp adalah kelas utama untuk menjalankan aplikasi koperasi sederhana.
+ * Mengelola interaksi user, proses belanja, dan menampilkan riwayat transaksi.
+ */
 public class KoperasiApp {
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        KoperasiManager koperasi = KoperasiManager.getInstance(); //depedency : main uses KoperasiManager
+        // Mendapatkan instance KoperasiManager (Singleton)
+        KoperasiManager koperasi = KoperasiManager.getInstance();
 
         while (true) {
             System.out.println("\n========== APLIKASI KOPERASI ==========");
@@ -19,13 +25,13 @@ public class KoperasiApp {
             int menu = input.nextInt();
 
             switch (menu) {
-                case 1 :
+                case 1:
                     ProsesBelanja(input, koperasi);
                     break;
-                case 2 :
+                case 2:
                     koperasi.tampilkanRiwayatTransaksi();
                     break;
-                case 3 :
+                case 3:
                     System.out.println("sampai jumpa... :)");
                     return;
                 default:
@@ -35,55 +41,56 @@ public class KoperasiApp {
         }
     }
 
+    /**
+     * Metode untuk memproses alur belanja produk.
+     *
+     * @param input Objek Scanner untuk input user.
+     * @param koperasi Objek KoperasiManager untuk mengelola data.
+     */
     private static void ProsesBelanja(Scanner input, KoperasiManager koperasi) {
-            koperasi.TampilMenu();
+        koperasi.TampilMenu();
 
-            System.out.print("Pilih barang : ");
-            int pilihan = input.nextInt();
+        System.out.print("Pilih barang : ");
+        int pilihan = input.nextInt();
 
-            //error handling atau validasi pilihan nya
-            if (!koperasi.validasiPilihan(pilihan)) {
-                System.out.println("Pilihan tidak tersedia");
-                return;
-            }
+        // Error handling atau validasi pilihan
+        if (!koperasi.validasiPilihan(pilihan)) {
+            System.out.println("Pilihan tidak tersedia");
+            return;
+        }
 
-            // Ambil Barang yang dipilih
-            Produk produkdipilih = koperasi.getProd(pilihan);  //depedency
-            if (produkdipilih == null) {
+        // Ambil Barang yang dipilih
+        Produk produkdipilih = koperasi.getProd(pilihan);
+        if (produkdipilih == null) {
             System.out.println("Produk tidak ditemukan, silakan pilih kembali.");
             return;
-            }
+        }
 
-            // jumlah?
-            System.out.print("Jumlah Barang : ");
-            int jumlah = input.nextInt();
+        // jumlah?
+        System.out.print("Jumlah Barang : ");
+        int jumlah = input.nextInt();
 
-            if (jumlah <= 0) {
-                System.out.println("Jumlah Tidak boleh kurang dari 1.... :) ");
-                return;
-            }
+        if (jumlah <= 0) {
+            System.out.println("Jumlah Tidak boleh kurang dari 1.... :) ");
+            return;
+        }
 
-            // cek stok
-            if (produkdipilih.Getstok_prod() < jumlah) {
-                System.out.println("Jumlah stok tidak mencukup....  :) cuma ada stok : " + produkdipilih.Getstok_prod());
-                 return;
-            }
+        // cek stok
+        if (produkdipilih.Getstok_prod() < jumlah) {
+            System.out.println("Jumlah stok tidak mencukup....  :) cuma ada stok : " + produkdipilih.Getstok_prod());
+            return;
+        }
 
-            // buat transaksi
+        // buat transaksi
+        Transaksi transaksi = new Transaksi(produkdipilih, jumlah);
 
-            Transaksi transaksi = new Transaksi(produkdipilih , jumlah);
-        
-            // proses pembelian
-
-            if (transaksi.ProsesTransaksi()){
-                transaksi.cetakStruk();
-                koperasi.tambahTransaksi(transaksi); //AGGREGATION: simpan ke collection
-                System.out.println("TRANSAKSI BERHASIL... :)");
-            } else {
-                System.out.println("TRANSAKSI GAGAL... :(");
-            }
-
-
-            
-        }  
+        // proses pembelian
+        if (transaksi.ProsesTransaksi()) {
+            transaksi.cetakStruk();
+            koperasi.tambahTransaksi(transaksi);
+            System.out.println("TRANSAKSI BERHASIL... :)");
+        } else {
+            System.out.println("TRANSAKSI GAGAL... :(");
+        }
+    }
 }
