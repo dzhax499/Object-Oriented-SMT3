@@ -1,4 +1,4 @@
-### Core Java Volume I: Fundamentals
+### PEMROGRAMAN BERORIENTASI OBJEK (TEORI)
 
-### **book: Horstmann Cay S. - Core Java. Volume I - Fundamentals. 1-Pearson (2019)_full**
-page : 738
+### **TUJUAN: Mahasiswa dapat membuat program eksepsi dengan Java.**
+page : 71 - 80
