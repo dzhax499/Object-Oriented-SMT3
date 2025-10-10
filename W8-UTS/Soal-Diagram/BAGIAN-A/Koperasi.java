@@ -1,0 +1,3 @@
+interface Koperasi {
+    void loanMonthly();
+}

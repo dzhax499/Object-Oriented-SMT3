@@ -1,0 +1,32 @@
+diagram kelas employee:
+employee(getsalary()) <- Fulltime (getsalary())
+employee(getsalary()) <- Parttime(getsalary())
+Fulltime(getsalary()) -> employee(getsalary())
+Fulltime(getsalary())-> koperasi(loanMonthly())
+departemen(departemenName()) agregasi employee
+
+Membuat program dari diagram kelas employee dengan mengikuti ketentuan berikut ini :
+
+ketentuan :
+1. Gaji Fulltime = gaji pokok + tunjangan lembur + tunjangan jabatan +tunjangan anak+tunjangan komunikasi - pinjaman koperasi
+2. Gaji Part-time = gaji pokok + tunjangan lembur
+3. ketentuan gaji pokok :
+    a. Staf manager = 5.000.000
+    b. Staf programmer = 3.000.000
+    c. Staf analis = 3.000.000
+4. ketentuan dari tunjangan jabatan :
+    a. staf manager = 5.000.000
+    b. staf programmer = 2.000.000
+    c. staf analis = 3.000.000
+5. Tunjangan Komunikasi didapat 500.0000 untuk semua level jabatan
+6. Tunjangan lembur didapat dari total jam karyawan tersebut lembur x 30.000 di hari sabtu atau minggu
+7. Tunjangan anak maksimal 2 orang dengan jumlah tunjangan per anaknya 500.000
+
+- pertanyaan :
+1. lengkapi kelas kelas pada diagram kelas yang terdapat pada kelas employee
+2. Terapkan enkapsulasi pada kelas-kelas yang akan anda buat!
+3. buatlah base salary terkait gaji pokok yang diterapkanpada kelas employee
+4. buatlah main kelas untuk menampilkan total gaji ujang dan asep di bulan maret 2025 yang dibayarkan tanggal 1 dibulan april 2025, dengan ketentuan tambahan sebagai berikut 
+    - Asep adalah staf programmer yang telah bekerja selama 3 tahun, telah mendapatkan tunjangan jabatan,punya 2 anak, dan memiliki cicilan pinjaman koperasi sebesar 500.000 per bulan,sedangkan ujang adalah pegawai parttime yang belum menikah
+    - pada tanggal 23 maret 2025 asep lembur dari pukul 09:00-12:00 kemudian ujang lembur dari pukul 13:00-18:00
+    - hitung dan tampilkan  total gaji mereka di bulan april
