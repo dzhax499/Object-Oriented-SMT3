@@ -374,8 +374,11 @@ public class KasirUI extends JFrame {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            JOptionPane.showMessageDialog(null, 
+                "Error setting look and feel: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
 
         SwingUtilities.invokeLater(KasirUI::new);
