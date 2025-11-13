@@ -1,10 +1,22 @@
+package code;
+
 import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * KasirUI - versi diperbaiki untuk memenuhi beberapa best-practices (SonarQube
+ * warnings).
+ */
 public class KasirUI extends JFrame {
+
+    // Konstanta yang dipakai berulang
+    private static final String LINE_SEPARATOR = "========================================";
+    private static final String TITLE_WARNING = "Peringatan";
+    private static final String TITLE_ERROR = "Error";
+    private static final String TITLE_CHECKOUT = "Checkout Berhasil";
 
     // Komponen GUI
     private JTable tabelProduk;
@@ -38,7 +50,8 @@ public class KasirUI extends JFrame {
 
     private void initializeFrame() {
         setTitle("GUI Dzakir Tsabit - 241511071");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // akses yang lebih eksplisit ke konstanta exit
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(900, 600);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -209,7 +222,7 @@ public class KasirUI extends JFrame {
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this,
                     "Pilih produk terlebih dahulu!",
-                    "Peringatan",
+                    TITLE_WARNING,
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -223,7 +236,7 @@ public class KasirUI extends JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "Masukkan jumlah yang valid (angka positif)!",
-                    "Error",
+                    TITLE_ERROR,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -263,7 +276,7 @@ public class KasirUI extends JFrame {
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this,
                     "Pilih item yang ingin dihapus!",
-                    "Peringatan",
+                    TITLE_WARNING,
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -283,7 +296,7 @@ public class KasirUI extends JFrame {
         if (modelKeranjang.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this,
                     "Keranjang kosong!",
-                    "Peringatan",
+                    TITLE_WARNING,
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -295,13 +308,13 @@ public class KasirUI extends JFrame {
         generateStrukData(total, points);
 
         String message = String.format(
-                "Checkout berhasil!\n\nTotal: %s\nPoints: %d\n\nKeranjang telah dikosongkan.",
+                "Checkout berhasil!%n%nTotal: %s%nPoints: %d%n%nKeranjang telah dikosongkan.",
                 currencyFormat.format(total),
                 points);
 
         JOptionPane.showMessageDialog(this,
                 message,
-                "Checkout Berhasil",
+                TITLE_CHECKOUT,
                 JOptionPane.INFORMATION_MESSAGE);
 
         // Kosongkan keranjang
@@ -313,7 +326,7 @@ public class KasirUI extends JFrame {
         if (strukTerakhir.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Belum ada transaksi yang di-checkout!",
-                    "Peringatan",
+                    TITLE_WARNING,
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -339,13 +352,15 @@ public class KasirUI extends JFrame {
 
     private void generateStrukData(int total, int points) {
         StringBuilder struk = new StringBuilder();
-        struk.append("========================================\n");
-        struk.append("          TOKO DZAKIR TSABIT           \n");
-        struk.append("           241511071                   \n");
-        struk.append("========================================\n");
-        struk.append(String.format("Tanggal: %s\n", java.time.LocalDateTime.now()
-                .format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
-        struk.append("========================================\n\n");
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
+        struk.append("          TOKO DZAKIR TSABIT           ").append(System.lineSeparator());
+        struk.append("           241511071                   ").append(System.lineSeparator());
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
+
+        struk.append(String.format("Tanggal: %s%n",
+                java.time.LocalDateTime.now()
+                        .format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
 
         for (int i = 0; i < modelKeranjang.getRowCount(); i++) {
             String nama = (String) modelKeranjang.getValueAt(i, 1);
@@ -353,20 +368,20 @@ public class KasirUI extends JFrame {
             int harga = (int) modelKeranjang.getValueAt(i, 3);
             int subtotal = (int) modelKeranjang.getValueAt(i, 4);
 
-            struk.append(String.format("%-25s\n", nama));
-            struk.append(String.format("  %d x %s = %s\n\n",
+            struk.append(String.format("%-25s%n", nama));
+            struk.append(String.format("  %d x %s = %s%n%n",
                     qty,
                     currencyFormat.format(harga),
                     currencyFormat.format(subtotal)));
         }
 
-        struk.append("========================================\n");
-        struk.append(String.format("TOTAL:              %s\n", currencyFormat.format(total)));
-        struk.append(String.format("POINTS:             %d\n", points));
-        struk.append("========================================\n");
-        struk.append("      Terima kasih atas kunjungan      \n");
-        struk.append("                Anda!                  \n");
-        struk.append("========================================\n");
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
+        struk.append(String.format("TOTAL:              %s%n", currencyFormat.format(total)));
+        struk.append(String.format("POINTS:             %d%n", points));
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
+        struk.append("      Terima kasih atas kunjungan      ").append(System.lineSeparator());
+        struk.append("                Anda!                  ").append(System.lineSeparator());
+        struk.append(LINE_SEPARATOR).append(System.lineSeparator());
 
         strukTerakhir = struk.toString();
     }
@@ -374,11 +389,12 @@ public class KasirUI extends JFrame {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            JOptionPane.showMessageDialog(null, 
-                "Error setting look and feel: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Error setting look and feel: " + e.getMessage(),
+                    TITLE_ERROR,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
         SwingUtilities.invokeLater(KasirUI::new);
