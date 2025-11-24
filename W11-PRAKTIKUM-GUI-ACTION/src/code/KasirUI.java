@@ -6,10 +6,6 @@ import java.util.Locale;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * KasirUI - versi diperbaiki untuk memenuhi beberapa best-practices (SonarQube
- * warnings).
- */
 public class KasirUI extends JFrame {
 
     // Konstanta yang dipakai berulang
